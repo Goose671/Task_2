@@ -10,3 +10,5 @@ function consoleFunction() {
     user.password = document.getElementById("password").value ;
     console.log(user);
 }
+let button = document.getElementById("btn")
+button.addEventListener('click', consoleFunction)
