@@ -2,23 +2,22 @@
     padding: 0;
     margin: 0;
     text-decoration: none;
+    
+}
+body{
+    background-color: deepskyblue;
 }
 .container{
-    position: absolute;
-    top: 40%;
-    right: 40%;
-
-    width: 350px;
-    height: 210px;
     padding: 30px;
-
-    background-color: deepskyblue;
 }
 .main{
     background-color: white;
     box-shadow: 1px 3px 18px -1px rgba(0,0,0,0.72);
     border-radius: 5px;
     padding: 15px;   
+    position: absolute;
+    top: 40%;
+    right: 40%;
 }
 .main__items + .main__items{
     margin-top: 15px;
