@@ -1,0 +1,44 @@
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+}
+.container{
+    position: absolute;
+    top: 40%;
+    right: 40%;
+
+    width: 350px;
+    height: 210px;
+    padding: 30px;
+
+    background-color: deepskyblue;
+}
+.main{
+    background-color: white;
+    box-shadow: 1px 3px 18px -1px rgba(0,0,0,0.72);
+    border-radius: 5px;
+    padding: 15px;   
+}
+.main__items + .main__items{
+    margin-top: 15px;
+}
+p{
+    text-align: center;
+    font-size: 20px;
+}
+input{
+    width: 310px;
+    height: 35px;
+    border-radius: 5px;
+    padding-left: 5px;
+    background-color:  #D3D3D3 ;
+    border: 1px solid #D3D3D3;
+}
+#btn{
+    width: 320px;
+
+    color: white;
+    background-color: deepskyblue;
+    font-size: 15px;
+}
