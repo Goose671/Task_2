@@ -9,12 +9,16 @@
 </head>
 <body>
    <div class="container">
-    <form action="">
+    <form id="logInForm">
         <div class="main">
             <p class="main__items">Hello!</p>
-            <div class="main__items"><input required id="email" type="email" name="email" placeholder="Email" ></div>
-            <div class="main__items"><input required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"  minlength="" id="password" type="password" name="password" placeholder="Password"></div>
-            <input class="main__items" id="btn" type="submit" value="Login"  >
+            <div class="main__items">
+                <input required id="email" type="email" name="email" placeholder="Email" >
+            </div>
+            <div class="main__items">
+                <input required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"  id="password" type="password" name="password" placeholder="Password">
+            </div>
+            <input class="main__items" id="btn" type="submit" value="Login">
         </div>
     </form>
    </div> 
