@@ -1,28 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task_1</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-   <div class="container">
-    <form id="logInForm">
-        <div class="main">
-            <p class="main__items">Hello!</p>
-            <div class="main__items">
-                <input required id="email" type="email" name="email" placeholder="Email" >
-            </div>
-            <div class="main__items">
-                <input required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"  id="password" type="password" name="password" placeholder="Password">
-            </div>
-            <input class="main__items" id="btn" type="submit" value="Login">
-        </div>
-    </form>
-   </div> 
 
-   <script src="script.js"></script>
+<body>
+    <div class="main">
+        <div class="title">
+            <p>To do app</p>
+        </div>
+        <div class="main__input">
+            <input type="text" class="input__text" placeholder="Add Todo">
+            <button class="btn__add">Add</button>
+        </div>
+        <div class="task">
+            <p class="task__text">Bring vegetables</p>
+            <button class="btn__icon"><img class="icon" src="img/pencil-solid.svg" alt="edit"></button>
+            <button class="btn__icon"><img class="icon" src="img/trash-can-solid.svg" alt="delete"></button>
+        </div>
+        <div class="task">
+            <p class="task__text">Bring vegetables</p>
+            <button class="btn__icon"><img class="icon" src="img/pencil-solid.svg" alt="edit"></button>
+            <button class="btn__icon"><img class="icon" src="img/trash-can-solid.svg" alt="delete"></button>
+        </div>
+        <div class="task">
+            <p class="task__text">Bring vegetables</p>
+            <button class="btn__icon"><img class="icon" src="img/pencil-solid.svg" alt="edit"></button>
+            <button class="btn__icon"><img class="icon" src="img/trash-can-solid.svg" alt="delete"></button>
+        </div>
+        <div class="task">
+            <p class="task__text">Bring vegetables</p>
+            <button class="btn__icon"><img class="icon" src="img/pencil-solid.svg" alt="edit"></button>
+            <button class="btn__icon"><img class="icon" src="img/trash-can-solid.svg" alt="delete"></button>
+        </div>
+        <div class="task">
+            <p class="task__text">Bring vegetables</p>
+            <button class="btn__icon"><img class="icon" src="img/pencil-solid.svg" alt="edit"></button>
+            <button class="btn__icon"><img class="icon" src="img/trash-can-solid.svg" alt="delete"></button>
+        </div>
+    </div>
+
+
+    <script src="js/script.js"></script>
 </body>
+
 </html>
