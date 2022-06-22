@@ -61,4 +61,6 @@ function addTask(){
 
     // создал внутри  button елемент img с классом "icon"
 
+    text.value = ""
+
 }
