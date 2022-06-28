@@ -7,7 +7,9 @@ const taskList = document.getElementById('task-list');
 btn__add.addEventListener('click', createTask);
 
 const tasksJSON = localStorage.getItem('tasks'); 
-const tasks = tasksJSON ? JSON.parse(tasksJSON) : [];
+let tasks = tasksJSON ? JSON.parse(tasksJSON) : [];
+
+let numberId = 0;
 
  displayTasks();
 
@@ -17,7 +19,7 @@ function addTask(e) {
 
     task_div.classList.add("task")
 
-    // task_div.id = numberId++
+    task_div.id = numberId
 
     taskList.prepend(task_div)
 
@@ -62,14 +64,24 @@ function addTask(e) {
     task_btn_pencil = document.createElement("img")
 
     task_btn_pencil.classList.add("icon")
+    task_btn_pencil.classList.add("delete")
 
     task_btn_pencil.src = "img/trash-can-solid.svg"
+
+    task_btn_pencil.id = numberId
 
     task_btn.append(task_btn_pencil)
 
     // создал внутри  button елемент img с классом "icon"
-
     
+    const deleteBtn = document.querySelector('.delete');
+    deleteBtn.addEventListener('click', deleteTask);
+
+    const task = {
+        value: text.value,
+        id: numberId
+        };
+        tasks.push(task);
 };
 
 function displayTasks() {
@@ -78,14 +90,34 @@ function displayTasks() {
             addTask(element);
         });
     }
-}
+};
 
 function createTask(){
     addTask(text);
-    const task = {
-        value: text.value
-    };
-    tasks.push(task);
+    
+    
     localStorage.setItem("tasks", JSON.stringify(tasks));
     text.value = "" ;
-}
+    numberId++;
+};
+
+function deleteTask(e){
+
+    let target = e.target
+
+    let task_div = document.getElementById(target.id)
+
+    localStorage.clear();
+   
+    tasks.splice(target.id,1);
+
+    console.log(target.id)
+
+    console.log(tasks);
+
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+
+    task_div.remove();
+   
+};
+
