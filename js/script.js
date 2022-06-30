@@ -6,10 +6,9 @@ const taskList = document.getElementById('task-list');
 
 btn__add.addEventListener('click', createTask);
 
-const tasksJSON = localStorage.getItem('tasks'); 
-let tasks = tasksJSON ? JSON.parse(tasksJSON) : [];
+let tasksJSON = localStorage.getItem('tasks'); 
 
-let numberId = 0;
+let tasks = tasksJSON ? JSON.parse(tasksJSON) : [];
 
  displayTasks();
 
@@ -19,7 +18,7 @@ function addTask(e) {
 
     task_div.classList.add("task")
 
-    task_div.id = numberId
+    task_div.id =  e.id;
 
     taskList.prepend(task_div)
 
@@ -57,6 +56,12 @@ function addTask(e) {
 
     task_btn.classList.add("btn__icon")
 
+    task_btn.id = e.id;
+
+    task_btn.style.zindex = 1;
+
+    task_btn.classList.add("delete")
+
     task_div.append(task_btn)
 
     // создал внутри div елемент buttton с классом "btn__icon" 
@@ -64,11 +69,11 @@ function addTask(e) {
     task_btn_pencil = document.createElement("img")
 
     task_btn_pencil.classList.add("icon")
-    task_btn_pencil.classList.add("delete")
+    // task_btn_pencil.classList.add("delete")
 
     task_btn_pencil.src = "img/trash-can-solid.svg"
 
-    task_btn_pencil.id = numberId
+    // task_btn_pencil.id = Date.now();
 
     task_btn.append(task_btn_pencil)
 
@@ -77,11 +82,7 @@ function addTask(e) {
     const deleteBtn = document.querySelector('.delete');
     deleteBtn.addEventListener('click', deleteTask);
 
-    const task = {
-        value: text.value,
-        id: numberId
-        };
-        tasks.push(task);
+    
 };
 
 function displayTasks() {
@@ -93,31 +94,36 @@ function displayTasks() {
 };
 
 function createTask(){
-    addTask(text);
-    
+
+    const task = {
+        value: text.value,
+        id: Date.now()
+        };
+        tasks.push(task);
+
+    addTask(task);
     
     localStorage.setItem("tasks", JSON.stringify(tasks));
     text.value = "" ;
-    numberId++;
+    
 };
 
 function deleteTask(e){
+    tasksJSON = localStorage.getItem('tasks'); 
+    tasks = tasksJSON ? JSON.parse(tasksJSON) : [];
 
-    let target = e.target
-
-    let task_div = document.getElementById(target.id)
-
-    localStorage.clear();
-   
-    tasks.splice(target.id,1);
+    let target = e.target.parentNode.parentNode
 
     console.log(target.id)
 
-    console.log(tasks);
+    let task_div = document.getElementById(target.id)
 
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+    const filteredTasks = tasks.filter(task => task.id != target.id)
+
+    localStorage.setItem("tasks", JSON.stringify(filteredTasks));
 
     task_div.remove();
-   
+
+    
 };
 
