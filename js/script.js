@@ -28,6 +28,8 @@ function addTask(e) {
 
     task_p.classList.add("task__text")
 
+    task_p.id = e.id
+
     task_p.innerHTML = e.value
 
     task_div.append(task_p)
@@ -37,6 +39,12 @@ function addTask(e) {
     let task_btn = document.createElement("button")
 
     task_btn.classList.add("btn__icon")
+
+    task_btn.id = e.id;
+    
+    task_btn.style.zindex = 1;
+
+    task_btn.classList.add("edit")
 
     task_div.append(task_btn)
 
@@ -80,7 +88,12 @@ function addTask(e) {
     // создал внутри  button елемент img с классом "icon"
     
     const deleteBtn = document.querySelector('.delete');
+
     deleteBtn.addEventListener('click', deleteTask);
+
+    const btn__edit = document.querySelector('.edit');
+
+    btn__edit.addEventListener('click', editTask);
 
     
 };
@@ -114,8 +127,6 @@ function deleteTask(e){
 
     let target = e.target.parentNode.parentNode
 
-    console.log(target.id)
-
     let task_div = document.getElementById(target.id)
 
     const filteredTasks = tasks.filter(task => task.id != target.id)
@@ -127,3 +138,46 @@ function deleteTask(e){
     
 };
 
+function editTask(e){
+
+    tasksJSON = localStorage.getItem('tasks'); 
+    tasks = tasksJSON ? JSON.parse(tasksJSON) : [];
+
+    let target = e.target.parentNode.parentNode;
+
+    let task_div = document.getElementById(target.id);
+
+    let task_p = task_div.firstChild;
+
+    let editedText = prompt('Please edit your task');
+
+    let object = tasks.find(item => item.id == target.id);
+
+    console.log( object)
+
+    
+
+    if(editedText){
+    
+        task_p.innerHTML = editedText;
+
+        object.value = editedText;
+
+        console.log(object);
+
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+    };
+
+
+
+  
+
+    
+
+    
+
+
+   
+
+
+};
