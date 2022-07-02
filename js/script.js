@@ -6,19 +6,15 @@ const taskList = document.getElementById('task-list');
 
 btn__add.addEventListener('click', createTask);
 
-let tasksJSON = localStorage.getItem('tasks'); 
+displayTasks();
 
-let tasks = tasksJSON ? JSON.parse(tasksJSON) : [];
-
- displayTasks();
-
-function addTask(e) {
+function addTask(el) {
 
     let task_div = document.createElement("div")
 
     task_div.classList.add("task")
 
-    task_div.id =  e.id;
+    task_div.id =  el.id;
 
     taskList.prepend(task_div)
 
@@ -28,9 +24,7 @@ function addTask(e) {
 
     task_p.classList.add("task__text")
 
-    task_p.id = e.id
-
-    task_p.innerHTML = e.value
+    task_p.innerHTML = el.value
 
     task_div.append(task_p)
 
@@ -39,10 +33,6 @@ function addTask(e) {
     let task_btn = document.createElement("button")
 
     task_btn.classList.add("btn__icon")
-
-    task_btn.id = e.id;
-    
-    task_btn.style.zindex = 1;
 
     task_btn.classList.add("edit")
 
@@ -63,10 +53,6 @@ function addTask(e) {
     task_btn = document.createElement("button")
 
     task_btn.classList.add("btn__icon")
-
-    task_btn.id = e.id;
-
-    task_btn.style.zindex = 1;
 
     task_btn.classList.add("delete")
 
@@ -93,26 +79,27 @@ function addTask(e) {
 
     const btn__edit = document.querySelector('.edit');
 
-    btn__edit.addEventListener('click', editTask);
-
-    
+    btn__edit.addEventListener('click', editTask);    
 };
 
 function displayTasks() {
+    const tasks = getAllTasks();
+
     if (tasks.length > 0) {
-        tasks.forEach(element => {
-            addTask(element);
+        tasks.forEach(t => {
+            addTask(t);
         });
     }
 };
 
 function createTask(){
+    const tasks = getAllTasks();
 
     const task = {
         value: text.value,
         id: Date.now()
-        };
-        tasks.push(task);
+    };
+    tasks.push(task);
 
     addTask(task);
     
@@ -121,11 +108,10 @@ function createTask(){
     
 };
 
-function deleteTask(e){
-    tasksJSON = localStorage.getItem('tasks'); 
-    tasks = tasksJSON ? JSON.parse(tasksJSON) : [];
+function deleteTask() {
+    const tasks = getAllTasks();
 
-    let target = e.target.parentNode.parentNode
+    let target = this.parentNode;
 
     let task_div = document.getElementById(target.id)
 
@@ -133,17 +119,13 @@ function deleteTask(e){
 
     localStorage.setItem("tasks", JSON.stringify(filteredTasks));
 
-    task_div.remove();
-
-    
+    task_div.remove();    
 };
 
-function editTask(e){
+function editTask(){
+    const tasks = getAllTasks();
 
-    tasksJSON = localStorage.getItem('tasks'); 
-    tasks = tasksJSON ? JSON.parse(tasksJSON) : [];
-
-    let target = e.target.parentNode.parentNode;
+    let target = this.parentNode;
 
     let task_div = document.getElementById(target.id);
 
@@ -153,31 +135,15 @@ function editTask(e){
 
     let object = tasks.find(item => item.id == target.id);
 
-    console.log( object)
+    task_p.innerHTML = editedText;
 
-    
+    object.value = editedText;
 
-    if(editedText){
-    
-        task_p.innerHTML = editedText;
-
-        object.value = editedText;
-
-        console.log(object);
-
-        localStorage.setItem("tasks", JSON.stringify(tasks));
-    };
-
-
-
-  
-
-    
-
-    
-
-
-   
-
-
+    localStorage.setItem("tasks", JSON.stringify(tasks));
 };
+
+function getAllTasks() {
+    const tasksJSON = localStorage.getItem('tasks'); 
+
+    return tasksJSON ? JSON.parse(tasksJSON) : [];
+}
